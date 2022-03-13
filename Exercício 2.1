@@ -1,0 +1,37 @@
+
+cifra.cesar = function(mensagem, cripto) {
+  vetor.mensagem = unlist(strsplit(mensagem, split=""))
+  vector.alfabeto = c('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
+                      'R','S','T','U','V','W','X','Y','Z')
+  vector.codificado = c('D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
+                        'R','S','T','U','V','W','X','Y','Z','A','B','C')
+  vector.tratado = c()
+  for (letra in 1:nchar(mensagem)) {
+    
+    if (cripto == 1) {
+      posicao = match(vetor.mensagem[letra],vector.alfabeto)
+      vector.tratado = c(vector.tratado,vector.codificado[posicao])
+    } else if (cripto == 2) {
+      posicao = match(vetor.mensagem[letra],vector.codificado)
+      vector.tratado = c(vector.tratado,vector.alfabeto[posicao])
+    }
+  }
+  if (cripto == 1) {
+    cat("Codificação da mensagem",mensagem,":",paste(vector.tratado, collapse = ""),"\n","\n")
+  } else if (cripto == 2) {
+    cat("Descodificação da mensagem",mensagem,":",paste(vector.tratado, collapse = ""),"\n","\n")
+  }
+}
+
+mensagem_para_tratar = readline("Digite a mensagem para tratamento: ")
+como_tratar =  readline("Digite 1 para codificar ou 2 para descodificar: ")
+  
+cifra.cesar(mensagem_para_tratar,as.numeric(como_tratar))
+            
+# cifra.cesar("ATACARROMA",1) # o resultado da criptografia é DWDFDUURPD
+
+# cifra.cesar("DWDFDUURPD", 2) # o resultado da criptografia é ATACARROMA
+
+# cifra.cesar("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 1)
+
+# cifra.cesar("DEFGHIJKLMNOPQRSTUVWXYZABC", 2)
